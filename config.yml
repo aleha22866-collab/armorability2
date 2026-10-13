@@ -1,0 +1,261 @@
+# Учитывать ли предмет в основной руке (кроме брони на игроке)
+include-main-hand: true
+
+# Значение в % за 1 уровень атрибута на 1 предмете.
+# Суммируется по всей надетой броне (и предмету в руке).
+values:
+  absorb: 3          # шанс поглотить весь урон от удара
+  water_resist: 15   # сопротивление урону в воде
+  fire_reduce: 25    # уменьшение длительности горения
+  golden_heart: 4    # шанс (золотое сердце себе + иссушение атакующему, одним броском)
+  levitation: 3      # шанс левитации атакующему + регенерация себе
+  reflect: 4         # шанс вернуть урон атакующему
+  fall_reduce: 15    # -% урона от падения за предмет
+  blast_resist: 10   # +% сопротивления взрывам за предмет
+  arrow_resist: 10   # +% сопротивления стрелам/снарядам за предмет
+  frost_guard: 5     # шанс % замедлить атакующего при получении удара
+  adrenaline: 4      # шанс % получить ускорение при получении удара
+
+# Максимум суммарного значения в %
+caps:
+  absorb: 75
+  water_resist: 80
+  fire_reduce: 100
+  golden_heart: 100
+  levitation: 100
+  reflect: 100
+  fall_reduce: 90
+  blast_resist: 80
+  arrow_resist: 70
+  frost_guard: 100
+  adrenaline: 100
+
+golden-heart:
+  hearts: 1                 # сколько сердец даёт (1 сердце = 2 HP)
+  max-absorption: 20.0      # потолок золотых HP
+  wither-seconds: 2
+  wither-amplifier: 0       # 0 = уровень I
+
+levitation:
+  levitation-seconds: 1
+  levitation-amplifier: 0   # 0 = уровень I
+  regen-seconds: 2
+  regen-amplifier: 1        # 1 = уровень II
+
+frost-guard:
+  seconds: 3
+  amplifier: 1              # 1 = Замедление II
+
+adrenaline:
+  seconds: 3
+  amplifier: 1              # 1 = Скорость II
+
+reflect:
+  multiplier: 1.5           # 150% полученного урона
+  feedback: true            # показывать надпись в action bar, когда отражение сработало
+
+# ============================================================
+#  Способности предметов в ЛЕВОЙ руке
+# ============================================================
+
+# Определять ли способности, если предмет взял сам создатель (для тестов)
+roll-for-creator: false
+
+messages:
+  # Описание предмета, пока способности ещё не определены (любое число строк)
+  pending-lore:
+    - "&5Скрытые способности"
+    - "&8Проявятся у нового владельца"
+  # Описание предмета, если ни одна способность не выпала
+  none-lore:
+    - "&8Способности не проявились"
+  # Сообщение игроку при определении (%abilities% — список названий)
+  rolled: "&6Предмет пробудил способности: &f%abilities%"
+  rolled-none: "&7Предмет не пробудил ни одной способности"
+  # Сообщение жертве блокировки элитр
+  second-wind: "&dВторое дыхание!"
+  elytra-blocked: "&cВаши элитры заблокированы на %seconds% сек!"
+
+# Числовые параметры способностей
+ability-settings:
+  tenth-hit-every: 10        # tenth_hit: каждый N-й удар x2 урона
+  warden-chance: 3           # warden_strike: шанс %
+  warden-damage: 20          # warden_strike: доп. урон
+  combat-speed-seconds: 2    # combat_speed: сколько секунд длится Скорость I после удара
+  water-damage: 2            # water_damage: +урон в воде
+  water-armor: 1             # water_armor: +броня в воде
+  water-triple-chance: 3     # water_triple: шанс % тройного урона в воде
+  golden-strike-chance: 3    # golden_strike: шанс %
+  golden-strike-hearts: 4    # golden_strike: сколько золотых сердец
+  weakening-chance: 5        # weakening_strike: шанс %
+  weakening-seconds: 2
+  lift-every: 15             # lift_strike: каждый N-й удар
+  lift-seconds: 2
+  elytra-jam-chance: 5       # elytra_jam: шанс %
+  elytra-jam-seconds: 4
+  armor-break-chance: 10     # armor_breaker: шанс %
+  armor-break-multiplier: 2.0  # во сколько раз сильнее ломается броня
+  nausea-every: 20           # nausea_strike: каждый N-й удар
+  nausea-seconds: 3
+  executioner-hearts: 5      # executioner: ниже скольких сердец у противника
+  executioner-damage: 2
+  last-stand-hearts: 5       # last_stand: ниже скольких сердец у вас
+  last-stand-armor: 2
+
+  calm-resist-chance: 5      # calm_resist: шанс % при ударе (если не горите)
+  calm-resist-seconds: 3
+  calm-resist-amplifier: 1   # 1 = Сопротивление II
+  vampire-chance: 10         # vampire_bite: шанс %
+  vampire-heal: 2            # сколько HP лечит (2 = 1 сердце)
+  frost-strike-chance: 8     # frost_strike: шанс %
+  frost-strike-seconds: 3
+  frost-strike-amplifier: 1  # 1 = Замедление II
+  ignite-chance: 8           # ignite_strike: шанс %
+  ignite-seconds: 4
+  sky-wrath-chance: 2        # sky_wrath: шанс %
+  sky-wrath-damage: 6
+  soft-landing-reduction: 50 # soft_landing: -% урона от падения
+  second-wind-hearts: 3      # second_wind: срабатывает, если здоровья меньше N сердец
+  second-wind-cooldown: 60   # откат в секундах
+  second-wind-seconds: 4     # длительность Регенерации
+  second-wind-amplifier: 2   # 2 = Регенерация III
+  second-wind-absorb-hearts: 2
+
+# Название и описание каждой способности.
+# Цвета: &-коды. Описание (lore) — список строк; обычно 2 строки, но можно любое число.
+abilities:
+  tenth_hit:
+    name: "&6Десятый удар"
+    lore:
+      - "&7Каждый десятый удар"
+      - "&7наносит двойной урон"
+  warden_strike:
+    name: "&3Удар Хранителя"
+    lore:
+      - "&7Шанс 3% ударить звуковой волной"
+      - "&7и нанести 20 доп. урона"
+  combat_speed:
+    name: "&bБоевой темп"
+    lore:
+      - "&7Скорость I, пока вы наносите"
+      - "&7удары каждые 2 секунды"
+  water_damage:
+    name: "&9Сила прилива"
+    lore:
+      - "&7+2 к урону,"
+      - "&7пока вы находитесь в воде"
+  water_armor:
+    name: "&9Водяной панцирь"
+    lore:
+      - "&7+1 к броне,"
+      - "&7пока вы находитесь в воде"
+  water_triple:
+    name: "&1Гнев пучины"
+    lore:
+      - "&7Шанс 3% нанести тройной урон,"
+      - "&7пока вы находитесь в воде"
+  calm_regen:
+    name: "&aХолодное исцеление"
+    lore:
+      - "&7Регенерация I,"
+      - "&7пока вы не горите"
+  calm_strength:
+    name: "&cХолодная ярость"
+    lore:
+      - "&7Сила I,"
+      - "&7пока вы не горите"
+  calm_resist:
+    name: "&8Холодная стойкость"
+    lore:
+      - "&7Пока вы не горите, шанс 5% при ударе"
+      - "&7получить Сопротивление II на 3 секунды"
+  golden_strike:
+    name: "&eЗолотой удар"
+    lore:
+      - "&7Шанс 3% при ударе получить"
+      - "&7+4 золотых сердца"
+  adversity:
+    name: "&dСтойкость в беде"
+    lore:
+      - "&7При любом негативном эффекте даёт"
+      - "&7Сопротивление I и Регенерацию I"
+  weakening_strike:
+    name: "&7Ослабляющий удар"
+    lore:
+      - "&7Шанс 5% наложить Слабость I"
+      - "&7на 2 секунды на противника"
+  elytra_regen:
+    name: "&fИсцеляющий полёт"
+    lore:
+      - "&7Регенерация II,"
+      - "&7пока вы летите на элитрах"
+  lift_strike:
+    name: "&5Подбрасывающий удар"
+    lore:
+      - "&7Каждый 15 удар накладывает"
+      - "&7Левитацию I на 2 секунды"
+  elytra_jam:
+    name: "&3Глушитель крыльев"
+    lore:
+      - "&7Шанс 5% заблокировать элитры"
+      - "&7противника на 4 секунды"
+  hand_power:
+    name: "&6Благословение руки"
+    lore:
+      - "&7Сила I и Скорость I,"
+      - "&7пока предмет в левой руке"
+  armor_breaker:
+    name: "&4Крушитель брони"
+    lore:
+      - "&7Шанс 10% сломать броню"
+      - "&7противника в 2 раза сильнее"
+  nausea_strike:
+    name: "&2Дурманящий удар"
+    lore:
+      - "&7Каждый 20 удар накладывает"
+      - "&7Тошноту I и Слабость I на 3 секунды"
+  executioner:
+    name: "&4Палач"
+    lore:
+      - "&7+2 к урону, когда у противника"
+      - "&7меньше 5 сердец здоровья"
+  last_stand:
+    name: "&cПоследний рубеж"
+    lore:
+      - "&7+2 к броне, когда у вас"
+      - "&7меньше 5 сердец здоровья"
+  vampire_bite:
+    name: "&4Вампирский укус"
+    lore:
+      - "&7Шанс 10% при ударе"
+      - "&7восстановить себе 1 сердце"
+  frost_strike:
+    name: "&bЛедяное касание"
+    lore:
+      - "&7Шанс 8% при ударе наложить"
+      - "&7Замедление II на 3 секунды"
+  ignite_strike:
+    name: "&6Поджигающий удар"
+    lore:
+      - "&7Шанс 8% при ударе"
+      - "&7поджечь противника на 4 секунды"
+  sky_wrath:
+    name: "&eГнев небес"
+    lore:
+      - "&7Шанс 2% при ударе вызвать молнию"
+      - "&7и нанести 6 доп. урона"
+  soft_landing:
+    name: "&aМягкое приземление"
+    lore:
+      - "&7-50% к урону от падения,"
+      - "&7пока предмет в левой руке"
+  gills:
+    name: "&3Жабры"
+    lore:
+      - "&7Подводное дыхание, а в воде"
+      - "&7ещё и Грация дельфина"
+  second_wind:
+    name: "&dВторое дыхание"
+    lore:
+      - "&7При здоровье меньше 3 сердец: Регенерация III"
+      - "&7и +2 золотых сердца (откат 60 сек)"
